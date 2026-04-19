@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import Link from 'next/link'
-import { HelpCircle, BookOpen, Search } from 'lucide-react' // Optional: Install lucide-react for icons
+import Image from 'next/image' // Added Image import
+import { HelpCircle, BookOpen } from 'lucide-react'
 
 export default function Navbar() {
   const [mounted, setMounted] = useState(false)
@@ -12,8 +13,8 @@ export default function Navbar() {
   const { disconnect } = useDisconnect()
 
   useEffect(() => {
-     const timer = setTimeout(() => setMounted(true), 0);
-  return () => clearTimeout(timer);
+    const timer = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timer);
   }, [])
 
   if (!mounted) return null
@@ -22,7 +23,15 @@ export default function Navbar() {
     <nav className="flex justify-between items-center px-6 py-3 border-b border-zinc-800 bg-black sticky top-0 z-50">
       {/* LEFT: Branding & Main Nav */}
       <div className="flex items-center gap-8">
-        <Link href="/" className="text-2xl font-black text-yellow-400 tracking-tighter hover:opacity-80 transition-opacity">
+        <Link href="/" className="flex items-center gap-3 text-2xl font-black text-yellow-400 tracking-tighter hover:opacity-80 transition-opacity">
+          {/* LOGO IMPLEMENTATION */}
+          <Image 
+            src="/arcfun.png" 
+            alt="ARC.FUN Logo" 
+            width={32} 
+            height={32} 
+            className="rounded-sm"
+          />
           ARC.FUN
         </Link>
 
